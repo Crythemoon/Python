@@ -3,11 +3,14 @@ def calculate_future_value(monthly_investment, yearly_interest, years):
     months = years * 12
 
     future_value = 0.0
-    for i in range(0, months):
-        future_value += monthly_investment
-        monthly_interest = future_value * monthly_interest_rate
-        future_value += monthly_interest
-    return future_value
+    x = 0
+    for x in range(0, years):
+        x += 1
+        for i in range(0, 12):
+            future_value += monthly_investment
+            monthly_interest = future_value * monthly_interest_rate
+            future_value += monthly_interest
+    print("Years: " + str(x + 1) + " Future Value = " + str(round(future_value, 2)))
 
 def main():
     choice = "y"
@@ -23,7 +26,7 @@ def main():
         while True:
             yearly_interest_rate = float(input("Enter yearly interest rate:\t"))
             if yearly_interest_rate <= 0 or yearly_interest_rate > 15:
-                print("Entry must be greater than 0 and less than or equal to 15\nPlease try again.")
+                print("Entry must be greater than 0 and less than or equal to 15.\nPlease try again.")
             else:
                 break
 
@@ -34,9 +37,6 @@ def main():
             else:
                 break
 
-        future_value = calculate_future_value(monthly_investment, yearly_interest_rate, years)
-
-        print("Future value:\t\t\t" + str(round(future_value, 2)))
         print()
 
         choice = input("Continue? (y/n): ")
@@ -48,9 +48,9 @@ def main():
                 break
             else:
                 choice = input("Error, Continue? (y/n): ")
-        print()
+        
 
-print("Bye!")
+    print("Bye!")
 
 if __name__ == "__main__":
     main()
