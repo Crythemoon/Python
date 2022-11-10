@@ -1,5 +1,5 @@
-def calculate_future_value(monthly_investment, yearly_interest, years):
-    monthly_interest_rate = yearly_interest / 12 / 100
+def calculate_future_value(monthly_investment, yearly_interest_rate, years):
+    monthly_interest_rate = yearly_interest_rate / 12 / 100
     months = years * 12
 
     future_value = 0.0
@@ -10,7 +10,8 @@ def calculate_future_value(monthly_investment, yearly_interest, years):
             future_value += monthly_investment
             monthly_interest = future_value * monthly_interest_rate
             future_value += monthly_interest
-    print("Years: " + str(x + 1) + " Future Value = " + str(round(future_value, 2)))
+        print("Years: " + str(x) + " Future Value = " + str(round(future_value, 2)))
+    return
 
 def main():
     choice = "y"
@@ -36,8 +37,9 @@ def main():
                 print("Entry must be greater than 0 and less than or equal to 50.\nPlease try again")
             else:
                 break
-
-        print()
+        
+        future_value = calculate_future_value(monthly_investment, yearly_interest_rate, years)
+        print(future_value)
 
         choice = input("Continue? (y/n): ")
 
