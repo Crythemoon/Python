@@ -16,18 +16,26 @@ def list(movies):
             print(str(x) + ".", movie[0], "(" + str(movie[1]) + ") @", str(movie[2]) )
             x += 1
     print()
+    return movies
 
 def add(movies):
+    ans = "n"
     name = input("Name: ")
     for movie in movies:
-        if name.lower() in movie.lower():
-            print("this movie was already added")
-    year = int(input("Year: "))
-    price = float(input("Price: "))
-    movie = [name, year, price]
-    movies.append(movie)
-    print(name, "was added")
+        m = [str(x) for x in movie]
+        if name.lower() == m[0].lower():
+            ans = "y"
+            break
+    if ans == "n":
+        year = int(input("Year: "))
+        price = float(input("Price: "))
+        movie = [name, year, price]
+        movies.append(movie)
+        print(name, "was added")
+    else:
+        print(name, "is already in database")
     print()
+    return movies
 
 def delete(movies):
     num = int(input("Number: "))
@@ -38,6 +46,7 @@ def delete(movies):
     else:
         print("Invalid movie number\n")
     print()
+    return movies
 
 def find(movies):
     year = int(input("Year: "))
@@ -48,6 +57,7 @@ def find(movies):
     if not output in locals():
         print("There are no movies in", year)
     print()
+    return movies
 
 def command():
     movies = [["Monty Python and the Holy Grail", 1975, 9.95],
@@ -58,13 +68,16 @@ def command():
     while choice.lower() != "exit":
         choice = input("Command: ")
         if choice.lower() == "list":
-            list(movies)
+            movies = list(movies)
         elif choice.lower() == "add":
-            add(movies)
+            movies = add(movies)
         elif choice.lower() == "del":
-            delete(movies)
+            movies = delete(movies)
         elif choice.lower() == "find":
-            find(movies)
+            movies = find(movies)
+        elif choice.lower() == "exit":
+            print()
+            break
         else:
             print("Invalid choice, please try again.")
             print()
@@ -72,6 +85,7 @@ def command():
 def main():
     display()
     command()
+    print("Good Bye!")
 
 if __name__ == "__main__":
     main()

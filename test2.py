@@ -4,15 +4,17 @@ movies = [["Monty Python and the Holy Grail", 1975, 9.95],
               ["Gone with the Wind", 1939, 14.95]]
 
 name = input("Name: ")
-a = []
 for movie in movies:
     m = [str(x) for x in movie]
-    a.append(m)
-
-
-year = int(input("Year: "))
-price = float(input("Price: "))
-movie = [name, year, price]
-movies.append(movie)
-print(name, "was added")
+    if name.lower() == m[1].lower():
+        ans = "True"
+        break
+if 'ans' in locals():
+    year = int(input("Year: "))
+    price = float(input("Price: "))
+    movie = [name, year, price]
+    movies.append(movie)
+    print(name, "was added")
+else:
+    print(name, "is already in database")
 print()
